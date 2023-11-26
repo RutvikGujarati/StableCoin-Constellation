@@ -4,7 +4,10 @@ out = 'out'
 libs = ['lib']
 remappings = [
     '@thirdweb-dev/=node_modules/@thirdweb-dev/',
+    '@chainlink/contracts/=node_modules/contracts/',
+    '@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/'
 ]
+
 
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
