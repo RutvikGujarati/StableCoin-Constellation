@@ -23,6 +23,11 @@
 // private
 // view & pure functions
 
+pragma solidity 0.8.19;
+
+import {ERC20Burnable, ERC20} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+
 /*
  * @title StableCoin
  * @author Gujarati Rutvik
@@ -33,19 +38,18 @@
  *
  * This is the contract meant to be owned by RREngine. It is a ERC20 token that can be minted and burned by the DSCEngine smart contract.
  */
-
-pragma solidity 0.8.19;
-
-import {ERC20Burnable, ERC20} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-
-
 contract StableCoin is ERC20Burnable, Ownable {
     error StableCoin__AmountMustBeMoreThanZero();
     error StableCoin__BurnAmountExceedsBalance();
     error StableCoin__NotZeroAddress();
 
-    
+    /*
+    In future versions of OpenZeppelin contracts package, Ownable must be declared with an address of the contract owner as a parameter.
+    For example:
+    constructor() ERC20("StableCoin", "DSC") Ownable(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266) {}
+    Related code changes can be viewed in this commit:
+    https://github.com/OpenZeppelin/openzeppelin-contracts/commit/13d5e0466a9855e9305119ed383e54fc913fdc60
+    */
     constructor() ERC20("StableCoin", "RR") {}
 
     function burn(uint256 _amount) public override onlyOwner {
@@ -71,12 +75,3 @@ contract StableCoin is ERC20Burnable, Ownable {
     }
 
     }
-
-
-    /*
-    In future versions of OpenZeppelin contracts package, Ownable must be declared with an address of the contract owner as a parameter.
-    For example:
-    constructor() ERC20("StableCoin", "DSC") Ownable(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266) {}
-    Related code changes can be viewed in this commit:
-    https://github.com/OpenZeppelin/openzeppelin-contracts/commit/13d5e0466a9855e9305119ed383e54fc913fdc60
-    */
