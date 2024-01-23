@@ -4,7 +4,7 @@ out = 'out'
 libs = ['lib']
 remappings = [
     '@thirdweb-dev/=node_modules/@thirdweb-dev/',
-    '@chainlink/contracts/=node_modules/contracts/',
+    '@chainlink/contracts/=node_modules/@chainlink/contracts/',
     '@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/'
 ]
 

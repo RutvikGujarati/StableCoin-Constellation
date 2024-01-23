@@ -1,7 +1,15 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.20;
-
+pragma solidity ^0.8.19;
+import "../src/StableCoin.sol";
 contract Deploy{
-    broadcast()
+    // broadcast()
+    function run()  public {
+        StableCoin Coin = new StableCoin();
+        vm.startBroadCast();
+    
+        vm.stopBroadCast();
+      
+        
+    }
 }
