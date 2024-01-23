@@ -45,6 +45,7 @@ export default function Home() {
   return (
     <>
    <div>
+  
       <h1>StableCoin DApp</h1>
       <div>
         <label>Mint Amount:</label>

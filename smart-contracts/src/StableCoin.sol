@@ -38,7 +38,13 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
  *
  * This is the contract meant to be owned by RREngine. It is a ERC20 token that can be minted and burned by the DSCEngine smart contract.
  */
-contract StableCoin is ERC20Burnable, Ownable {
+ contract StableCoin is ERC20Burnable, Ownable {
+
+
+    uint256 private constant DECIMALS = 18;
+    uint256 private constant INITIAL_SUPPLY = 1_000_000 * (10**DECIMALS); // Initial supply of 1 million tokens
+    uint256 private constant PRICE_SCALE = 1_000_000; 
+    
     error StableCoin__AmountMustBeMoreThanZero();
     error StableCoin__BurnAmountExceedsBalance();
     error StableCoin__NotZeroAddress();
@@ -72,6 +78,18 @@ contract StableCoin is ERC20Burnable, Ownable {
         }
         _mint(_to, _amount);
         return true;
+    }
+
+    //transfer fucntion
+
+    function _transfer(address recipeient, uint256 amount)public returns(bool) {
+            super.transfer(recipeient, amount);
+            return true;  
+    }
+
+    //adjust price
+    function adjustprice(uint256 newPrice)external onlyOwner {
+                
     }
 
     }
